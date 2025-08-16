@@ -1,0 +1,26 @@
+[project]
+name = "neurohub"
+version = "0.0.4"
+authors = [
+  { name="Kamatayon", email="wowegable@gmail.com" },
+]
+description = "A python wrapper for neurohub API"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+dependencies=["httpx"]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
+
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
