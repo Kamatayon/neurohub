@@ -1,1 +1,1 @@
-from .neurohub import NeuroHubClient
+from .root import RootAPI as Neurohub

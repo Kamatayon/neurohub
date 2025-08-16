@@ -39,8 +39,8 @@ class Departments():
         resp = self._base._make_request('department', 'GET', params=params)
         return resp
 
-    def get_by_client(self, client_uuid: Optional[UUID]) -> List[Dict[str, Any]]:
+    def get_by_client(self, client_uuid: Optional[UUID] = None) -> List[Dict[str, Any]]:
         client_uuid = self._base._handle_client_uuid(client_uuid)
         params = {'client_uuid': client_uuid}
         resp = self._base._make_request('department', 'GET', params=params)
-        return resp['departments']
+        return resp

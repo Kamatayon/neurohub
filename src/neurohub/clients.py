@@ -1,5 +1,5 @@
 from uuid import UUID
-from typing_extensions import Optional
+from typing import Optional
 from .base import BaseClient
 
 

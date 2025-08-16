@@ -3,7 +3,6 @@ from uuid import UUID
 import httpx
 
 from neurohub.errors import MissingClientUUID
-from neurohub.managers import Managers
 class BaseClient():
     base_url = 'https://v2.api.voiceai.neuro-hub.ru/'
     def __init__(self, secret_key: str, client_uuid: Optional[UUID]):
@@ -33,10 +32,3 @@ class BaseClient():
         if self.client_uuid:
             return self.client_uuid
         raise MissingClientUUID()
-
-    @property
-    def managers(self):
-        return Managers(self)
-
-b = BaseClient('g', UUID('g'))
-b.managers.upsert()
