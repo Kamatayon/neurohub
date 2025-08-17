@@ -11,5 +11,5 @@ class Clients():
             'client_uuid': None if not client_uuid else str(client_uuid),
             'client_name': client_name
         }
-        resp = self._base._make_request('client', 'POST', params=params)
+        resp = self._base.make_request('client', 'POST', params=params)
         return UUID(resp['client_uuid'])

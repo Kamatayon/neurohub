@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 from uuid import UUID
 import httpx
 
@@ -14,13 +14,25 @@ class BaseClient():
         self.client = httpx.Client(headers=self.headers, base_url=self.base_url)
         self.client_uuid = client_uuid
 
-    def _make_request(self, endpoint: str, method: str, body=None, params=None):
+    def _transform_body(self, body: Dict[str, Any]):
+        result = {}
+        for key, value in body.items():
+            if isinstance(value, UUID):
+                result[key] = str(value)
+            result[key] = value
+        return result
+
+
+    def make_request(self, endpoint: str, method: str, body: Optional[Dict[str, Any]]=None, params=None):
         if method == 'GET':
             response = self.client.get(endpoint, params=params)
         elif method == 'DELETE':
             response = self.client.delete(endpoint, params=params)
         else:
-            response = self.client.post(endpoint, json=body)
+            if not body:
+                raise ValueError('Provide body when making POST request')
+            transformed_body = self._transform_body(body)
+            response = self.client.post(endpoint, json=transformed_body)
         # TODO: custom exception handling
         response.raise_for_status()
         resp_body = response.json()
