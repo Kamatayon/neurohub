@@ -1,1 +1,1 @@
-from .root import RootAPI as Neurohub
+from .root import RootAPI as NeuroHub

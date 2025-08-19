@@ -7,7 +7,7 @@ from neurohub.base import BaseClient
 class Managers():
     def __init__(self, base: BaseClient):
         self.base = base
-    def upsert(self, manager_uuid: UUID, manager_name: str, department_uuid: UUID | str, client_uuid: Optional[UUID | str]):
+    def upsert(self, manager_name: str, department_uuid: UUID | str, manager_uuid: Optional[UUID | str] = None, client_uuid: Optional[UUID | str] = None):
         client_uuid = self.base._handle_client_uuid(client_uuid)
         body = {
             'client_uuid': client_uuid,

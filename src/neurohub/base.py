@@ -17,8 +17,11 @@ class BaseClient():
     def _transform_body(self, body: Dict[str, Any]):
         result = {}
         for key, value in body.items():
+            if value is None:
+                continue
             if isinstance(value, UUID):
                 result[key] = str(value)
+                continue
             result[key] = value
         return result
 
