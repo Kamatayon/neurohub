@@ -7,7 +7,7 @@ from neurohub.base import BaseClient
 class Managers():
     def __init__(self, base: BaseClient):
         self.base = base
-    def upsert(self, manager_uuid: UUID, manager_name: str, department_uuid: UUID, client_uuid: Optional[UUID]):
+    def upsert(self, manager_uuid: UUID, manager_name: str, department_uuid: UUID | str, client_uuid: Optional[UUID | str]):
         client_uuid = self.base._handle_client_uuid(client_uuid)
         body = {
             'client_uuid': client_uuid,
@@ -17,7 +17,7 @@ class Managers():
         }
         resp = self.base.make_request('manager', 'POST', body)
         return UUID(resp['manager_uuid'])
-    def delete(self, manager_uuid: UUID, client_uuid: Optional[UUID]) -> bool:
+    def delete(self, manager_uuid: UUID | str, client_uuid: Optional[UUID | str]) -> bool:
         client_uuid = self.base._handle_client_uuid(client_uuid)
         params = {
             'client_uuid': client_uuid,
@@ -27,7 +27,7 @@ class Managers():
         return resp['success']
 
 
-    def get(self, manager_uuid: UUID, client_uuid: Optional[UUID]):
+    def get_by_uuid(self, manager_uuid: UUID | str, client_uuid: Optional[UUID | str] = None):
         """Get a single manager by UUID"""
         client_uuid = self.base._handle_client_uuid(client_uuid)
         params = {
@@ -37,7 +37,7 @@ class Managers():
         resp = self.base.make_request('manager', 'GET', params=params)
         return resp
 
-    def get_list(self, client_uuid: Optional[UUID] = None):
+    def get_list(self, client_uuid: Optional[UUID | str] = None):
         """Get all managers for a client"""
         client_uuid = self.base._handle_client_uuid(client_uuid)
         params = {'client_uuid': client_uuid}

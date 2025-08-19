@@ -38,9 +38,9 @@ class BaseClient():
         resp_body = response.json()
         return resp_body
 
-    def _handle_client_uuid(self, arg: Optional[UUID]):
+    def _handle_client_uuid(self, arg: Optional[str | UUID]):
         if arg:
-            return arg
+            return str(arg)
         if self.client_uuid:
-            return self.client_uuid
+            return str(self.client_uuid)
         raise MissingClientUUID()
