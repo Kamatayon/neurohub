@@ -29,7 +29,7 @@ class CriteriaGroup(TypedDict):
     criteria_group_weight: float
     criteria_group_rules: Dict[str, Any]
     criteria_group_type: str
-    criteria: List[Criteria]
+    # criteria: List[Criteria]
 
 class ChecklistDetailed(ChecklistSummary):
     criteria_group: List[CriteriaGroup]
