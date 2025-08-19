@@ -11,6 +11,14 @@ from neurohub.managers import Managers
 class RootAPI():
     def __init__(self, secret_key: str, client_uuid: Optional[UUID]):
         self.base = BaseClient(secret_key, client_uuid)
+
+    @property
+    def client_uuid(self) -> Optional[UUID]:
+        return self.base.client_uuid
+    @client_uuid.setter
+    def client_uuid(self, value: UUID):
+        self.base.client_uuid = value
+
     @property
     def managers(self):
         return Managers(self.base)
