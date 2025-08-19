@@ -4,8 +4,10 @@ from uuid import UUID
 
 from neurohub.checklists import Checklists
 from neurohub.clients import Clients
+from neurohub.critera_groups import CriteriaGroups
 from neurohub.departments import Departments
 from neurohub.managers import Managers
+from neurohub.file import Files
 
 
 class RootAPI():
@@ -31,3 +33,9 @@ class RootAPI():
     @property
     def checklists(self):
         return Checklists(self.base)
+    @property
+    def criteria_groups(self):
+        return CriteriaGroups(self.base)
+    @property
+    def files(self):
+        return Files(self.base)
