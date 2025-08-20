@@ -9,8 +9,8 @@ class Departments():
     def __init__(self, base: BaseClient):
         self._base = base
 
-    def upsert(self, department_uuid: Optional[str], department_name: str,
-               latitude: Optional[float] = None, longitude: Optional[float] = None, client_uuid: Optional[str] = None) -> str:
+    def upsert(self, department_name: str, department_uuid: Optional[str | UUID] = None,
+               latitude: Optional[float] = None, longitude: Optional[float] = None, client_uuid: Optional[str] = None) -> UUID:
         client_uuid = self._base._handle_client_uuid(client_uuid)
         body = {
             'client_uuid': client_uuid,
@@ -20,7 +20,7 @@ class Departments():
             'longitude': longitude
         }
         resp = self._base.make_request('department', 'POST', body=body)
-        return str(resp['department_uuid'])
+        return UUID(resp['department_uuid'])
 
     def delete(self, department_uuid: str | UUID, client_uuid: Optional[str] = None) -> bool:
         client_uuid = self._base._handle_client_uuid(client_uuid)
