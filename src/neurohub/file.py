@@ -20,4 +20,4 @@ class Files():
             'call_type': call_type
         }
         resp = self._base.make_request('file', 'POST', body=body)
-        return UUID(resp['resp_uuid'])
+        return UUID(resp['file_uuid'])

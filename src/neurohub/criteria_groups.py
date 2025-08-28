@@ -2,7 +2,7 @@ from uuid import UUID
 from typing import Optional, List, Dict, Any
 
 from .base import BaseClient
-from .types import CriteriaGroup, Criteria
+from .types import CriteriaGroup
 
 class CriteriaGroups():
     def __init__(self, base: BaseClient):

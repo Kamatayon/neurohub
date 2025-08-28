@@ -28,6 +28,8 @@ class BaseClient():
 
     def make_request(self, endpoint: str, method: str, body: Optional[Dict[str, Any]]=None, params=None):
         if method == 'GET':
+            if params:
+                params = self._transform_body(params)
             response = self.client.get(endpoint, params=params)
         elif method == 'DELETE':
             response = self.client.delete(endpoint, params=params)

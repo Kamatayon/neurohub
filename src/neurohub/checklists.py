@@ -27,7 +27,7 @@ class Checklists():
         resp = self._base.make_request('checklist', 'DELETE', params=params)
         return resp['success']
 
-    def get_by_uuid(self, checklist_uuid: UUID | str, client_uuid: Optional[UUID | str]) -> Dict[str, Any]:
+    def get_by_uuid(self, checklist_uuid: UUID | str, client_uuid: Optional[UUID | str] = None) -> Dict[str, Any]:
         client_uuid = self._base._handle_client_uuid(client_uuid)
         params = {
             'client_uuid': client_uuid,
@@ -36,8 +36,8 @@ class Checklists():
         resp = self._base.make_request('checklist', 'GET', params=params)
         return resp
 
-    def get_by_client(self, client_uuid: Optional[UUID | str]) -> List[Dict[str, Any]]:
+    def get_by_client(self, client_uuid: Optional[UUID | str] = None) -> List[Dict[str, Any]]:
         client_uuid = self._base._handle_client_uuid(client_uuid)
         params = {'client_uuid': client_uuid}
         resp = self._base.make_request('checklist', 'GET', params=params)
-        return resp['checklists']
+        return resp
