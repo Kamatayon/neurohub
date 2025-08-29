@@ -6,6 +6,7 @@ from neurohub.checklists import Checklists
 from neurohub.clients import Clients
 from neurohub.criteria import CriteriaClient
 from neurohub.criteria_groups import CriteriaGroups
+from neurohub.criteria_result import CriteriaResult
 from neurohub.departments import Departments
 from neurohub.managers import Managers
 from neurohub.file import Files
@@ -43,3 +44,6 @@ class RootAPI():
     @property
     def criteria(self):
         return CriteriaClient(self.base)
+    @property
+    def criteria_result(self):
+        return CriteriaResult(self.base)

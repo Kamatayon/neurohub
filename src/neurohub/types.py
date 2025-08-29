@@ -62,4 +62,29 @@ class CriteriaResultQA(TypedDict):
     qa_time_3: str
     criteria: Dict[str, str]  # {name: ..., prompt_id: ...}
 
-# Add similar types for other entities following the same pattern
+class CriteriaResultEntity(TypedDict):
+    criteria_result_entity_uuid: str
+    file_uuid: str
+    criteria_uuid: str
+    criteria_value: str
+    entity_time: str
+    criteria: Dict[str, str]
+    criteria_clasification_list: List[Dict[str, Any]]  # Expand this if needed
+
+class CriteriaClasificationGroup(TypedDict):
+    criteria_clasification_list_group_uuid: str
+    criteria_clasification_list_group_name: str
+
+class CriteriaClasificationItem(TypedDict):
+    criteria_clasification_list_uuid: str
+    criteria_clasification_list_value: str
+    criteria_clasification_list_group: CriteriaClasificationGroup
+
+class CriteriaResultAnalysis(TypedDict):
+    criteria_result_analysis_uuid: str
+    file_uuid: str
+    criteria_uuid: str
+    criteria_result: str
+    analysis_evidence: str
+    criteria: Dict[str, str]
+    classifications: List[CriteriaClasificationItem]
