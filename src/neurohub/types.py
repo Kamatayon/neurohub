@@ -88,3 +88,15 @@ class CriteriaResultAnalysis(TypedDict):
     analysis_evidence: str
     criteria: Dict[str, str]
     classifications: List[CriteriaClasificationItem]
+
+class ChecklistCriteriaGroupLink(TypedDict):
+    checklist_uuid: str
+    checklist_name: str
+    criteria_group_uuid: str
+    criteria_group_name: str
+
+class CriteriaGroupCriteriaLink(TypedDict):
+    criteria_group_uuid: str
+    criteria_group_name: str
+    criteria_uuid: str
+    criteria_name: str
