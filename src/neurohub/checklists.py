@@ -2,7 +2,7 @@ from uuid import UUID
 from typing import Optional, List, Dict, Any
 
 from neurohub.base import BaseClient
-from src.neurohub.types import ChecklistCriteriaGroupLink
+from neurohub.types import ChecklistCriteriaGroupLink
 
 
 class Checklists():

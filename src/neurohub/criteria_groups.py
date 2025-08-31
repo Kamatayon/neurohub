@@ -3,7 +3,7 @@ from typing import Optional, List, Dict, Any
 
 from .base import BaseClient
 from .types import CriteriaGroup
-from src.neurohub.types import CriteriaGroupCriteriaLink
+from neurohub.types import CriteriaGroupCriteriaLink
 
 class CriteriaGroups():
     def __init__(self, base: BaseClient):
