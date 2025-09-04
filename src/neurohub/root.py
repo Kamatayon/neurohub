@@ -13,8 +13,11 @@ from neurohub.file import Files
 
 
 class RootAPI():
-    def __init__(self, secret_key: str, client_uuid: Optional[UUID]):
-        self.base = BaseClient(secret_key, client_uuid)
+    def __init__(self, secret_key: str, client_uuid: Optional[UUID],
+        s3_bucket: Optional[str] = None,
+        aws_access_key_id: Optional[str] = None,
+        aws_secret_access_key: Optional[str] = None):
+        self.base = BaseClient(secret_key, client_uuid, s3_bucket, aws_access_key_id, aws_secret_access_key)
 
     @property
     def client_uuid(self) -> Optional[UUID]:

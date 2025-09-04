@@ -1,11 +1,15 @@
 from typing import Any, Dict, Optional
 from uuid import UUID
 import httpx
+import boto3
 
 from neurohub.errors import MissingClientUUID
 class BaseClient():
     base_url = 'https://v2.api.voiceai.neuro-hub.ru/'
-    def __init__(self, secret_key: str, client_uuid: Optional[UUID]):
+    def __init__(self, secret_key: str, client_uuid: Optional[UUID],
+        s3_bucket: Optional[str] = None,
+        aws_access_key_id: Optional[str] = None,
+        aws_secret_access_key: Optional[str] = None):
         self.secret_key = secret_key
         self.headers = {
             "Authorization": f"Bearer {secret_key}",
@@ -13,6 +17,19 @@ class BaseClient():
         }
         self.client = httpx.Client(headers=self.headers, base_url=self.base_url)
         self.client_uuid = client_uuid
+
+
+        # Initialize S3 client if credentials provided
+        self.s3_bucket = s3_bucket
+        if s3_bucket and aws_access_key_id and aws_secret_access_key:
+            self.s3_client = boto3.client(
+                's3',
+                aws_access_key_id=aws_access_key_id,
+                aws_secret_access_key=aws_secret_access_key,
+                endpoint_url='https://storage.yandexcloud.net/'
+            )
+        else:
+            self.s3_client = None
 
     def _transform_body(self, body: Dict[str, Any]):
         result = {}

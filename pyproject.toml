@@ -1,6 +1,6 @@
 [project]
 name = "neurohub"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
   { name="Kamatayon", email="wowegable@gmail.com" },
 ]
@@ -17,8 +17,8 @@ license-files = ["LICENSE"]
 dependencies=["httpx"]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/Kamatayon/neurohub"
+Issues = "https://github.com/Kamatayon/neurohub"
 
 
 [build-system]
