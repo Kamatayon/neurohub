@@ -10,6 +10,7 @@ from neurohub.criteria_result import CriteriaResult
 from neurohub.departments import Departments
 from neurohub.managers import Managers
 from neurohub.file import Files
+from neurohub.transcriptions import Transcriptions
 
 
 class RootAPI():
@@ -50,3 +51,6 @@ class RootAPI():
     @property
     def criteria_result(self):
         return CriteriaResult(self.base)
+    @property
+    def transcriptions(self):
+        return Transcriptions(self.base)
