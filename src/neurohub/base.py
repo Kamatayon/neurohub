@@ -8,10 +8,9 @@ from neurohub.errors import MissingClientUUID
 
 
 class BaseClient:
-    base_url = "https://v2.api.voiceai.neuro-hub.ru/"
-
     def __init__(
         self,
+        host: str,
         secret_key: str,
         client_uuid: Optional[UUID],
         s3_bucket: Optional[str] = None,
@@ -23,7 +22,7 @@ class BaseClient:
             "Authorization": f"Bearer {secret_key}",
             "Content-Type": "application/json",
         }
-        self.client = httpx.Client(headers=self.headers, base_url=self.base_url)
+        self.client = httpx.Client(headers=self.headers, base_url=host)
         self.client_uuid = client_uuid
 
         # Initialize S3 client if credentials provided

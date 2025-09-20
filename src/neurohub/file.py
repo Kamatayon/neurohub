@@ -20,7 +20,7 @@ class Files:
         call_type: Optional[CallType] = None,
         client_uuid: Optional[UUID | str] = None,
         audio_channels: Optional[dict] = None,
-        call_params: Optional[dict] = None,
+        file_params: Optional[dict] = None,
     ):
         if not self._base.s3_client:
             raise RuntimeError(
@@ -42,7 +42,7 @@ class Files:
             "checklist_uuid": str(checklist_uuid),
             "call_type": call_type,
             "audio_channels": audio_channels,
-            "call_params": call_params,
+            "file_params": file_params,
         }
         resp = self._base.make_request("file", "POST", body=body)
         return UUID(resp["file_uuid"])
